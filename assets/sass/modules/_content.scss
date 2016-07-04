@@ -1,0 +1,151 @@
+//--------------------------------------------------------------
+// Site Content
+//--------------------------------------------------------------
+
+// Posts and pages
+
+.entry-header {
+	.post-image{
+		position: relative;
+		height: 400px;
+		overflow: hidden;
+		background-position: center;
+		background-size: cover;
+		margin-bottom: 1.6rem;
+	}
+	.entry-title {
+		margin: 0;
+	}
+}
+.sticky {
+	display: block;
+}
+
+.hentry {
+	margin: 0 0 $gutter 0;
+}
+
+.byline,
+.updated:not(.published) {
+	display: none;
+}
+
+.single .byline,
+.group-blog .byline {
+	display: inline;
+}
+
+.page-content,
+.entry-content,
+.entry-summary {
+	margin: rem(24) 0 0;
+}
+
+.page-links {
+	clear: both;
+	margin: 0 0 rem(24) 0;
+}
+
+.edit-link {
+	margin: 0 rem(24);
+}
+
+.more-link {
+	white-space: nowrap;
+}
+
+.author-info {
+	border-color: inherit;
+	border-style: solid;
+	border-width: 1px 0 1px 0;
+	clear: both;
+	padding-top: 1.75em;
+	padding-bottom: 1.75em;
+}
+
+.author-avatar .avatar {
+	float: left;
+	height: 42px;
+	margin: 0 1.75em 1.75em 0;
+	width: 42px;
+}
+
+.author-description > :last-child {
+	margin-bottom: 0;
+}
+
+.entry-content .author-title {
+	clear: none;
+	line-height: 1.75;
+	margin: 0;
+}
+
+.author-bio {
+	color: #686868;
+	line-height: 1.6153846154;
+	margin-bottom: 1.6153846154em;
+	overflow: hidden;
+}
+
+.author-link {
+	white-space: nowrap;
+}
+.author{
+	margin: $gutter 0;
+}
+
+
+.entry-footer {
+	@include pad(default 0);
+	border-top: 1px solid $color-background-hr;
+	border-bottom:  1px solid $color-background-hr;
+	margin-top: $gutter;
+	&:empty {
+		margin: 0;
+	}
+	a {
+		color: $color-link;
+		margin-right: 8px;
+		padding-left: 8px;
+		&:hover,
+		&:focus {
+			color: $color-link-hover;
+		}
+	}
+	.edit-link a {
+		color: $color-link;
+	}
+	> span:not(:last-child):after {
+		content: " ";
+		display: inline-block;
+		padding: 0 0.538461538em;
+	}
+	.avatar {
+		height: 21px;
+		width: 21px;
+		vertical-align: bottom;
+	}
+	.posted-on:before,
+	.cat-links:before,
+	.tags-links:before {
+		font-family: $icon-font;
+		color: $color-blue;
+		vertical-align: middle;
+	}
+	.posted-on::before {
+		content: "\f073";
+	}
+	.cat-links::before {
+		content: "\f07c";
+	}
+	.tags-links::before {
+		content: "\f02c";
+	}
+}
+
+// Asides
+
+.blog .format-aside .entry-title,
+.archive .format-aside .entry-title {
+	display: none;
+}

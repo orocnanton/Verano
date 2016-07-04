@@ -1,0 +1,178 @@
+//--------------------------------------------------------------
+// Homepage Template
+//--------------------------------------------------------------
+
+.home .site-content .wrap {
+  width: 100%;
+  max-width: 100%;
+  .content-area {
+    margin-right: 0;
+    width: 100%;
+    article {
+      @include pad(default 0);
+      //padding-bottom: $global-bottom-margin;
+      border-bottom: 1px solid $color-background-hr;
+      &:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.front-page.presentacion {
+  h2 {
+    text-align: center;
+  }
+}
+
+.front-page.destacados {
+  text-align: center;
+  .fa {
+    vertical-align: middle;
+    font-size: 30px;
+    height: 110px;
+    width: 110px;
+    color: $color-blue;
+    border: 4px solid $color-blue;
+    border-radius: 50%;
+    &:hover {
+      border: 4px solid $color-gray-alt;
+      @include transition(all 0.4s ease-in-out);
+      @include transform(scale(1.2));
+    }
+    &:before{
+      position: relative;
+      top: 35%;
+    }
+  }
+}
+
+.front-page.precios {
+  @include outer-container;
+  @include animation(fadeIn 1.0s ease-in);
+  text-align: center;
+  .two-col {
+    background: $color-gallery;
+    padding: $gutter;
+    .fa {
+      font-size: 80px;
+      //margin-bottom: $global-bottom-margin;
+      margin-right: auto;
+      margin-left: auto;
+      width: 80px;
+      height: 80px;
+    }
+    h2,
+    h3,
+    p {
+      border-top: 1px solid $color-background-hr;
+    }
+  }
+}
+// Page front option 2
+.page-template-page_front{
+  .wrap{
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    .content-area {
+      width: 100%;
+      .btn{
+        float: none;
+        font-size: 24px;
+        font-size: 2.4rem;
+        background: transparent;
+        border: 1px solid $color-blue;
+        color: $color-blue !important;
+      }
+      article {
+        @include pad(default);
+        //padding-bottom: $global-bottom-margin;
+        border-bottom: 1px solid $color-background-hr;
+        &:last-child {
+          padding-bottom: 0;
+          border-bottom: none;
+          margin-bottom: 0;
+        }
+        &.image{
+          background: url(http://192.168.0.15:3000/wp-verano/wp-content/uploads/2016/07/playa-con-silla.jpg) no-repeat center center fixed;
+          height: 515px;
+          overflow: hidden;
+          text-align: center;
+          padding: $gutter;
+          color: $color-whitesmoke;
+          background-size: cover;
+          .btn{
+            border: 1px solid $color-whitesmoke;
+            color: $color-whitesmoke !important;
+          }
+          h1 {
+            font-size: 60px;
+            font-size: 6rem;
+          }
+          p{
+            font-size: 24px;
+            font-size: 2.4rem;
+          }
+        }
+        &.callto{
+          text-align: center;
+          background: $color-mineshaft;
+          color: $color-whitesmoke;
+          .btn{
+            border: 1px solid $color-whitesmoke;
+            color: $color-whitesmoke !important;
+          }
+        }
+      } // article
+      .last-post {
+        @include outer-container;
+        max-width: 100%;
+        article{
+          @include outer-container;
+          max-width: 100%;
+          padding:0;
+          border: none;
+          &:first-child, &:last-child{
+            .post-img{
+
+              @include media($tablet-portrait) {
+                display: inline;
+                float: left;
+              }
+            }
+          }
+          &:first-child, &:last-child{
+            .last-content{
+
+              @include media($tablet-portrait) {
+                display: inline;
+                float: right;
+              }
+            }
+          }
+          .post-img, .last-content{
+            margin: 0;
+            width: 100%;
+            padding: $gutter;
+            @include media($tablet-portrait) {
+              margin: 0;
+              width: 50%;
+            }
+          }
+          .post-img {
+            height: 400px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+

@@ -1,0 +1,96 @@
+//--------------------------------------------------------------
+// Base Layout
+//--------------------------------------------------------------
+
+// Structure
+
+.wrap, .site-header {
+	@include outer-container;
+	padding: 0 1 * $gutter;
+
+	@include media($desktop) {
+		padding: 0;
+	}
+}
+
+.site-header {
+	@include media($tablet-landscape) {
+		padding: 0 2 * $gutter;
+	}
+}
+.site-footer{
+	padding-top: $gutter;
+}
+.site-content {
+	margin: $gutter auto;
+
+	@include media($desktop) {
+		margin: rem(40) auto rem(60);
+	}
+}
+
+.primary, .content-area {
+	@include fill-parent;
+	margin-top: $gutter;
+	@include media($phone-landscape) {
+		@include span-columns(8);
+	}
+}
+
+.secondary, .sidebar {
+	@include fill-parent;
+	margin-top: $gutter;
+	@include media($phone-landscape) {
+		@include span-columns(4);
+	}
+}
+.row{
+	@include outer-container;
+}
+.one-col{
+	@include media($tablet-portrait) {
+		@include span-columns(1);
+	}
+}
+.two_col{
+	margin-bottom: $gutter;
+	@include media($tablet-portrait) {
+		@include span-columns(2);
+	}
+}
+.two-col {
+	margin-bottom: $gutter;
+	@include media($tablet-portrait) {
+		@include span-columns(6);
+	}
+}
+.third-col {
+	margin-bottom: $gutter;
+	@include media($tablet-portrait) {
+		@include span-columns(4);
+	}
+}
+
+.quarter-col {
+	@include media($tablet-portrait) {
+		@include span-columns(3);
+	}
+}
+.threequarter-col{
+	@include media($tablet-portrait) {
+		@include span-columns(9);
+		@include omega();
+	}
+}
+.ten-col{
+	@include media($tablet-portrait) {
+		@include span-columns(10);
+		@include omega();
+	}
+}
+.eleven-col{
+	@include media($tablet-portrait) {
+		@include span-columns(11);
+		@include omega();
+	}
+}

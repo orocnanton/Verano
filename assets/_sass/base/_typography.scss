@@ -1,0 +1,83 @@
+//--------------------------------------------------------------
+// Typography
+//--------------------------------------------------------------
+html {
+  font-size: 62.5%;
+  /* 10px browser default */
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  color: $color-text-main;
+  font-family: $font-sans;
+  line-height: $line-height-body;
+  font-size: $base-font-size +px;
+}
+
+// Headers
+$context-font: (header: 0.5, article: 0.76, footer: 0.5, aside: 0.43);
+// Change the amplifier to increase/decrease the font-sizes
+$step-size-font: 0.333333;
+$amplifier-font: 2.5;
+@each $element,
+$value in $context-font {
+  #{$element} {
+    h1 {
+      @include heading-size(6 * $value);
+    }
+    h2 {
+      @include heading-size(5 * $value);
+    }
+    h3 {
+      @include heading-size(4 * $value);
+    }
+    h4 {
+      @include heading-size(3.2 * $value);
+    }
+    h5 {
+      @include heading-size(3 * $value);
+    }
+    h6 {
+      @include heading-size(2.8 * $value);
+    }
+  }
+}
+
+h1,
+.h1,
+{
+  @include heading-size(5 * 1);
+}
+
+h2,
+.h2,
+{
+  @include heading-size(4.3 * 1);
+}
+
+h3,
+.h3,
+{
+  @include heading-size(4 * 1);
+}
+
+h4,
+.h4,
+{
+  @include heading-size(3 * 1);
+}
+
+h5,
+.h5,
+{
+  @include heading-size(2 * 1);
+}
+
+h6,
+.h6,
+{
+  @include heading-size(1 * 1);
+}

@@ -1,0 +1,28 @@
+//--------------------------------------------------------------
+// Header
+//--------------------------------------------------------------
+.site-header{
+  margin-top: rem(20);
+}
+.site-branding {
+  float: left;
+  text-align: left;
+  img{
+    max-width: 80%;
+  }
+  .site-title {
+    font-size: rem(48);
+  }
+
+  .site-description {
+    font-size: rem(24);
+    margin: 0 0 rem(24) 0;
+  }
+}
+
+.page-header.arc, .page-header.cat, .page-header.tag {
+  background: $color-blue;
+  color: $color-whitesmoke;
+  margin-bottom: $gutter;
+  @include pad(default);
+}

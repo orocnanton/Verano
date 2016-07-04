@@ -1,0 +1,36 @@
+//--------------------------------------------------------------
+// Comments
+//--------------------------------------------------------------
+.comments-area{
+  margin-bottom: $gutter;
+}
+.comments-title {
+  font-size: rem(24);
+}
+
+.comment-list {
+  list-style: none;
+  margin: 0;
+  @include pad(default 0 default rem(12)  );
+
+  .comment-meta {
+    margin: 0 0 rem(14) 0;
+  }
+
+  .avatar {
+    float: left;
+    margin: 0 rem(10) 0 0;
+  }
+
+  .bypostauthor {
+    display: block;
+  }
+  .reply {
+    margin: $gutter 0;
+    a {
+      border: 1px solid $color-blue;
+      @include pad(default);
+
+    }
+  }
+}
