@@ -5,12 +5,12 @@
 .home .site-content .wrap {
   width: 100%;
   max-width: 100%;
+  padding:0;
   .content-area {
     margin-right: 0;
     width: 100%;
     article {
-      @include pad(default 0);
-      //padding-bottom: $global-bottom-margin;
+      @include pad(default);
       border-bottom: 1px solid $color-background-hr;
       &:last-child {
         padding-bottom: 0;
@@ -72,7 +72,7 @@
   }
 }
 // Page front option 2
-.page-template-page_front{
+.page-template-page_front .site-content{
   .wrap{
     width: 100%;
     max-width: 100%;
@@ -89,7 +89,6 @@
       }
       article {
         @include pad(default);
-        //padding-bottom: $global-bottom-margin;
         border-bottom: 1px solid $color-background-hr;
         &:last-child {
           padding-bottom: 0;

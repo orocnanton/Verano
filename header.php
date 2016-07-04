@@ -46,10 +46,10 @@
 		<header id="masthead" class="site-header" role="banner">
 			<div class="site-header-main row">
 				<div class="site-branding">
-					<?php the_custom_logo(); ?>
+
 					<?php
 					if (current_theme_supports('custom-logo')) {
-						// do something special when custom-header is supported...
+						twentysixteen_the_custom_logo();
 					}
 					?>
 

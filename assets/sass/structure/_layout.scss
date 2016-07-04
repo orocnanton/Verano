@@ -19,7 +19,10 @@
 	}
 }
 .site-footer{
-	padding-top: $gutter;
+	padding-top: 1 * $gutter;
+	@include media($desktop) {
+		padding: 0;
+	}
 }
 .site-content {
 	margin: $gutter auto;
