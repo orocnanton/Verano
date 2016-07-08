@@ -22,15 +22,19 @@ get_header(); ?>
 
 <?php global $redux_builder_orocnanotn;
 
-if (isset($redux_builder_orocnanotn['opt-slides']) && ! empty($redux_builder_orocnanotn['opt-slides'])) { ?>
-	<div class="slider-wrapper theme-default">
-	<div id="slider" class="nivoSlider">
-	<?php foreach ($redux_builder_orocnanotn['opt-slides'] as $slider) {
-		echo '<img src="' . $slider['image'] . '" data-thumb="' . $slider['image'] . '" alt="" title="<h1>' . $slider['title'] . '</h1> <p>' . $slider['description'] . '</p><a class=\'btn\' href=' . $slider['url'] . '>Leer mas</a>" />';
-	}
-	echo '</div>';
-	echo '</div>';
-} ?>
+if (isset($redux_builder_orocnanotn['opt-slides']) && ! empty($redux_builder_orocnanotn['opt-slides'])) : ?>
+	<article class="image center slider">
+		<?php foreach ($redux_builder_orocnanotn['opt-slides'] as $slider) : ?>
+			<div class="image-content" style="background: url('<?php echo $slider['image']; ?>'); ">
+			<h1 class="jumbo" data-animation="fadeInRight" data-delay="0.5s"><?php echo $slider['title'];?> </h1>
+				<h3 data-animation="fadeInLeft" data-delay="1s"><?php echo $slider['description']; ?></h3>
+				<a class="btn" href="<?php echo $slider['url']; ?> " data-animation="fadeInUpBig" data-delay="1.5s">Leer mas</a>
+			</div>
+		<?php endforeach; ?>
+	</article>
+<?php endif; ?>
+
+<!--La empresa-->
 <?php if ( ! empty($redux_builder_orocnanotn['opt-presentacion'])) { ?>
 	<article class="hentry">
 		<div class="front-page presentacion row">
@@ -74,12 +78,23 @@ if (isset($redux_builder_orocnanotn['opt-slides']) && ! empty($redux_builder_oro
 	<article class="hentry">
 		<div class="front-page row">
 			<div class="third-col">
-				<h3>Panel de opciones</h3>
+				<h3>Iconos sociales</h3>
 				<hr>
-				<p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de
-					texto</p>
-				<p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de
-					texto</p>
+				<?php
+				if ( ! empty($redux_builder_orocnanotn['social-icon'])) {
+					echo '<ul class="social-icons">';
+					$social_options = $redux_builder_orocnanotn ['social-icon'];
+					foreach ($social_options as $key => $value) {
+						if ($value) { ?>
+							<li class="social-icon"><a href="http://<?php echo $value; ?>" title="<?php echo $key; ?>"
+													   target="_blank">
+									<i class="fa fa-<?php echo $key; ?> icon-<?php echo $key; ?>"></i>
+								</a></li>
+						<?php }
+					}
+					echo '</ul>';
+				}
+				?>
 			</div>
 			<div class="third-col">
 				<img

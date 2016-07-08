@@ -46,32 +46,51 @@
 			</aside><!-- .sidebar .widget-area -->
 		<?php endif; ?>
 	</div>
+
+	<?php
+	global $redux_builder_orocnanotn;
+	if ( ! empty($redux_builder_orocnanotn['social-icon'])) : ?>
 	<div class="wrap">
-		<div class="social-icon">
-			<?php
-			global $redux_builder_orocnanotn;
-			$social_options = $redux_builder_orocnanotn ['social-icon']; ?>
-			<?php foreach ($social_options as $key => $value) {
-				if ($value) { ?>
-					<a href="http://<?php echo $value; ?>" title="<?php echo $key; ?>" target="_blank">
-						<i class="fa fa-<?php echo $key; ?>"></i>
-					</a>
-				<?php }
-			} ?>
-		</div><!-- .social-icons -->
+		<?php
+		echo '<ul class="social-icons">';
+		$social_options = $redux_builder_orocnanotn ['social-icon'];
+		foreach ($social_options as $key => $value) {
+			if ($value) { ?>
+				<li class="social-icon"><a href="http://<?php echo $value; ?>" title="<?php echo $key; ?>" target="_blank">
+						<i class="fa fa-<?php echo $key; ?> icon-<?php echo $key; ?>"></i>
+					</a></li>
+			<?php }
+		}
+		echo '</ul>';
+		?>
 	</div>
+	<?php endif; ?>
 
 	<div class="site-info">
 		<div class="wrap">
+			<?php do_action('twentysixteen_credits'); // hook wordpress footer ?>
+			<?php echo '<ul class="social-icons">'; ?>
+			<li class="social-icon"><a href="<?php echo esc_url(home_url('/')); ?>"  rel="home"><?php bloginfo('name'); ?></a> © <?php echo esc_html(date('Y')); ?></li>
 			<?php
-			do_action('twentysixteen_credits');
+			global $redux_builder_orocnanotn;
+			if ( ! empty($redux_builder_orocnanotn['links-footer'])) {
+				$links_footer = $redux_builder_orocnanotn ['links-footer'];
+				foreach ($links_footer as $key => $value) {
+					echo '<li class="social-icon"><a href="' . get_the_permalink($value) . '"> ' . get_the_title($value) . '</a></li>';
+				}
+			}
+			echo '</ul>';
 			?>
-			<span class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>"  rel="home"><?php bloginfo('name'); ?></a></span> © <?php echo esc_html(date('Y')); ?>
-
 		</div>
 	</div><!-- .site-info -->
 </footer><!-- .site-footer -->
 <?php wp_footer(); ?>
-
+<?php
+global $redux_builder_orocnanotn;
+if ( ! empty($redux_builder_orocnanotn['script-footer'])) {
+	$script_footer = $redux_builder_orocnanotn ['script-footer'];
+	echo $script_footer;
+}
+?>
 </body>
 </html>

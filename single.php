@@ -46,5 +46,8 @@ endwhile;
 
 </div><!-- .content-area -->
 
+<?php $layout = get_post_meta(  get_the_ID(), 'opciones_de_layout_post-layout', true ); ?>
+<?php if( $layout == 'content-area') {?>
 <?php get_sidebar(); ?>
+<?php } ?>
 <?php get_footer(); ?>

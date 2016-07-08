@@ -20,6 +20,8 @@
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 	<?php endif; ?>
 	<?php wp_head(); ?>
+	<link rel="stylesheet" href="http://s.mlcdn.co/animate.css">
+
 	<script>
       (function(){
         var config = {
@@ -37,14 +39,23 @@
       })();
 
 	</script>
+	<?php
+	global $redux_builder_orocnanotn;
+	$layout = $redux_builder_orocnanotn['opt-layout'];
+
+	if ( ! empty($redux_builder_orocnanotn['script-header'])) {
+	$script_header = $redux_builder_orocnanotn ['script-header'];
+		echo $script_header;
+	}
+	?>
 </head>
 <body <?php body_class(); ?>>
 <div id="page" class="site">
 	<div class="site-inner">
-		<a class="skip-link screen-reader-text" href="#content"><?php _e('Skip to content', 'twentysixteen'); ?></a>
+		<a class="skip-link screen-reader-text" href="#content"><?php _e('Skip to content', 'verano'); ?></a>
 
 		<header id="masthead" class="site-header" role="banner">
-			<div class="site-header-main row">
+			<div class="site-header-main wrap">
 				<div class="site-branding">
 
 					<?php
@@ -67,7 +78,7 @@
 					<?php endif; ?>
 				</div><!-- .site-branding -->
 
-				<?php if (has_nav_menu('primary') || has_nav_menu('social')) : ?>
+				<?php if (has_nav_menu('primary')) : ?>
 					<button id="menu-toggle" class="menu-toggle"></button>
 
 					<div id="site-header-menu" class="site-header-menu">
@@ -82,21 +93,6 @@
 								?>
 							</nav><!-- .main-navigation -->
 						<?php endif; ?>
-
-						<?php if (has_nav_menu('social')) : ?>
-							<nav id="social-navigation" class="social-navigation" role="navigation"
-								 aria-label="<?php esc_attr_e('Social Links Menu', 'twentysixteen'); ?>">
-								<?php
-								wp_nav_menu(array(
-									'theme_location' => 'social',
-									'menu_class'     => 'social-links-menu',
-									'depth'          => 1,
-									'link_before'    => '<span class="screen-reader-text">',
-									'link_after'     => '</span>',
-								));
-								?>
-							</nav><!-- .social-navigation -->
-						<?php endif; ?>
 					</div><!-- .site-header-menu -->
 				<?php endif; ?>
 			</div>
@@ -106,5 +102,7 @@
 
 		<div id="content" class="site-content">
 			<div class="wrap">
-				<div id="primary" class="content-area <?php verano_opten_layout(); ?>">
+				<?php $layout = get_post_meta(  get_the_ID(), 'opciones_de_layout_post-layout', true ); ?>
+
+				<div id="primary" class="content-area <?php echo $layout; ?> ">
 					<main id="main" class="site-main" role="main">

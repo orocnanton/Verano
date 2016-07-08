@@ -175,50 +175,44 @@ a {
   }
 }
 
- //Post navigation
-//.site-header .main-navigation + .social-navigation {
-//  margin-top: 1.75em;
-//}
-//
-//.site-footer .social-navigation {
-//  margin-bottom: 1.75em;
-//}
-//
-//.post-navigation {
-//  .previous {
-//    text-align: left;
-//    .title {
-//      position: absolute;
-//      left: 24px;
-//      bottom: 30px;
-//    }
-//  }
-//  .next {
-//    text-align: right;
-//    .title {
-//      position: absolute;
-//      right: 24px;
-//      bottom: 30px;
-//    }
-//  }
-//  a {
-//
-//    height: 250px;
-//    position: relative;
-//  }
-//  .background {
-//    position: absolute;
-//    top: 0;
-//    left: 0;
-//    width: 100%;
-//    height: 100%;
-//    opacity: .4;
-//    background-size: cover;
-//    background-position: center;
-//    transition: opacity 0.15s ease-out;
-//    min-height: 250px;
-//  }
-//}
+// Post navigation nextprev
+
+.post-navigation {
+  @include outer-container;
+  .previous {
+    text-align: left;
+    .title {
+      position: absolute;
+      left: 24px;
+      bottom: 30px;
+    }
+  }
+  .next {
+    text-align: right;
+    .title {
+      position: absolute;
+      right: 24px;
+      bottom: 30px;
+    }
+  }
+  a {
+
+    height: 250px;
+    position: relative;
+  }
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .2;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 0.15s ease-out;
+    min-height: 250px;
+  }
+}
 
 // Blog navitation
 .pagination {
@@ -318,9 +312,7 @@ a {
   }
   .site-header-main {
     text-align: right;
-    padding: 5px;
     position: relative;
-    transition: all 1s ease-in-out;
     width: 100%;
     p {
       margin-bottom: 0;
@@ -342,19 +334,6 @@ a {
       .menu-toggle {
         margin-top: 0;
         margin-bottom: 0;
-      }
-      .site-branding {
-
-        width: 150px;
-        max-width: 100%;
-        min-width: 0;
-        overflow: hidden;
-        img {
-          max-width: 80%;
-        }
-        p {
-          display: none;
-        }
       }
     }
   }

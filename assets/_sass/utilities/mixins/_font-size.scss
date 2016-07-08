@@ -1,4 +1,0 @@
-@mixin heading-size($size) {
-  font-size: ($size * $step-size-font * $amplifier-font)*10 + px;
-  font-size: $size * $step-size-font * $amplifier-font + rem;
-}

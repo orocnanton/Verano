@@ -3,8 +3,7 @@
 //--------------------------------------------------------------
 
 // Structure
-
-.wrap, .site-header {
+.wrap{
 	@include outer-container;
 	padding: 0 1 * $gutter;
 
@@ -14,36 +13,39 @@
 }
 
 .site-header {
+	padding-top: $gutter / 2;
+	padding-bottom: $gutter / 2;
 	@include media($tablet-landscape) {
-		padding: 0 2 * $gutter;
+		padding-top: $gutter;
+		padding-bottom: $gutter;
 	}
 }
 .site-footer{
 	padding-top: 1 * $gutter;
 	@include media($desktop) {
-		padding: 0;
+		padding: $gutter 0 0 0;
 	}
 }
 .site-content {
-	margin: $gutter auto;
+	margin: 0 auto $gutter;
 
 	@include media($desktop) {
-		margin: rem(40) auto rem(60);
+		margin: rem(0) auto rem(60);
 	}
 }
 
-.primary, .content-area {
+.content-area {
 	@include fill-parent;
-	margin-top: $gutter;
-	@include media($phone-landscape) {
+	@include media($tablet-portrait) {
 		@include span-columns(8);
 	}
 }
 
-.secondary, .sidebar {
+.sidebar {
 	@include fill-parent;
 	margin-top: $gutter;
-	@include media($phone-landscape) {
+	@include media($tablet-portrait) {
+		margin-top: 0;
 		@include span-columns(4);
 	}
 }
@@ -95,5 +97,10 @@
 	@include media($tablet-portrait) {
 		@include span-columns(11);
 		@include omega();
+	}
+}
+.twelve-col {
+	@include media($tablet-portrait) {
+		@include span-columns(12);
 	}
 }

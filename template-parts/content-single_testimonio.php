@@ -6,8 +6,6 @@
  * @subpackage Twenty_Sixteen
  * @since Twenty Sixteen 1.0
  */
-	$verano_subtitle_meta = get_post_meta($post->ID, 'verano_subtitle', true);
-	$verano_subtitle_meta = (!empty($verano_subtitle_meta) ? get_post_meta($post->ID, 'verano_subtitle', true) : "" );
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

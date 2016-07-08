@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Front Page 2
+ * Template Name: Front Video
  *
  *
  * @link http://codex.wordpress.org/Template_Hierarchy
@@ -21,13 +21,19 @@ get_header(); ?>
 
 
 	<article class="hentry image">
-<!--		<img src="http://192.168.0.15:8888/wp-verano/wp-content/uploads/2016/07/playa-con-silla.jpg">-->
-		<div class="image-content">
-			<h1 class="jumbo">Welcome to Summer time</h1>
-			<p>Todo lo que necesitas para tu web</p>
-			<button class="btn">Clikc para saber más</button>
+		<div>
+			<video autoplay="" loop="" poster="http://1pixel.es/wp-content/themes/FoundationPress-master/assets/img/img/1pixel.jpg" alt="1pixel" id="videobcg" muted="muted" volume="0">
+				<source src="http://1pixel.es/wp-content/themes/FoundationPress-master/assets/videos/portada.webm" type="video/webm">
+				<source src="http://1pixel.es/wp-content/themes/FoundationPress-master/assets/videos/portada.mp4" type="video/mp4">
+			</video>
+			<div class="image-content">
+				<h1 class="jumbo">Welcome to Summer time</h1>
+				<p>Todo lo que necesitas para tu web</p>
+				<button class="btn">Clikc para saber más</button>
+			</div>
 		</div>
 	</article>
+
 	<article class="hentry">
 		<div class="front-page destacados row">
 			<div class="third-col">

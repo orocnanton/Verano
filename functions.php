@@ -9,23 +9,15 @@
  * @license		GPL-2.0+
  */
 
-/**
- * Theme setup
- *
- * @since 1.0.0
- */
-
+add_action( 'after_setup_theme', 'verano_theme_setup', 11 );
 function verano_theme_setup() {
-    /*
-     * The setup
-     * @since	1.0.0
-     */
+
 	load_theme_textdomain( 'verano', get_template_directory() . '/languages' );
 	define( 'CHILD_THEME_NAME', 'Verano');
 	define('CHILD_THEME_URL', '');
 	define('CHILD_THEME_VERSION', '1.0.0');
 
-    // Add theme support for size thumbnail
+	// Add theme support for size thumbnail
 	add_image_size( 'background', 1680 );
 	add_image_size( 'background-small', 1240 );
 	add_image_size( 'single', 860 );
@@ -34,13 +26,14 @@ function verano_theme_setup() {
 	add_image_size( 'thumbnail', 200 );
 	add_image_size( 'thumbnail_small', 150, 150, true );
 
+	unregister_nav_menu('social');
 
+	add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
 	function remove_admin_bar_links() {
 		global $wp_admin_bar;
 		if ( ! current_user_can( 'administrator' ) ) {
 			$wp_admin_bar->remove_menu( 'bp-register' );
 			$wp_admin_bar->remove_menu( 'wp-logo' );          // Remove the WordPress logo
-			//$wp_admin_bar->remove_menu('about');            // Remove the about WordPress link
 			$wp_admin_bar->remove_menu( 'wporg' );            // Remove the WordPress.org link
 			$wp_admin_bar->remove_menu( 'documentation' );    // Remove the WordPress documentation link
 			$wp_admin_bar->remove_menu( 'support-forums' );   // Remove the support forums link
@@ -51,21 +44,10 @@ function verano_theme_setup() {
 			$wp_admin_bar->remove_menu( 'comments' );         // Remove the comments link
 			$wp_admin_bar->remove_menu( 'new-content' );      // Remove the content link
 			$wp_admin_bar->remove_menu( 'w3tc' );             // If you use w3 total cache remove the performance link
-			//$wp_admin_bar->remove_menu('my-account');       // Remove the user details tab
 			$wp_admin_bar->remove_menu( 'logout' );           // Remove the logout link
 		}
 	}
-
-	add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
-
 }
-
-add_action( 'after_setup_theme', 'verano_theme_setup' );
-/* fin */
-
-/*
-*   Quitar peso del header
-*/
 
 remove_action( 'wp_head', 'rsd_link' );
 remove_action( 'wp_head', 'wp_generator' );
@@ -77,44 +59,30 @@ remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
 remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );
 remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 );
 
-/*  fin  */
 
-
-/* 
+/*
 * Activamos la capacidad de reproducir shortcodes en los widgets
 */
-
 add_filter( 'widget_text', 'do_shortcode' );
 
-/* Fin */
 
 /*
 * Quitar estilos no necesarios
 */
 
-//add_action( 'wp_print_styles', 'verano_deregister_styles', 100 );
-
+add_action( 'wp_print_styles', 'verano_deregister_styles', 100 );
 function verano_deregister_styles() {
-	wp_dequeue_style( 'twentysixteen-fonts' ); // desactiva las fuentes de twentysixteen
+	//wp_dequeue_style( 'twentysixteen-fonts' ); // desactiva las fuentes de twentysixteen
 	wp_dequeue_style( 'genericons' ); // desactiva dashicons
 	wp_dequeue_style( 'contact-form-7' ); // desactiva los estilo de contact form 7
 	wp_dequeue_style( 'bbp-default' ); // desactiva los estilos de bbpress
 	wp_dequeue_style( 'um_minified' ); // desactiva los estilos de ultimate members
 	wp_dequeue_style( 'bp-twentysixteen' ); // desactiva los estilos budyypress  para twentysisteen
 	//wp_dequeue_style('bp-legacy-css'); // desactiva los estilos budyypress
+
 }
 
-/* Fin  */
 
-/**
- * Truncate a string based on provided word count and include terminator
- *
- * @param       string $string String to be truncated
- * @param       int $length Number of characters to allow before split
- * @param       string $terminator (Optional) String terminator to be used
- *
- * @return      string              Truncated string with add terminator
- */
 function verano_truncate_by_words( $string, $length, $terminator = "" ) {
 	if ( mb_strlen( $string ) <= $length ) {
 		$string = $string;
@@ -126,27 +94,21 @@ function verano_truncate_by_words( $string, $length, $terminator = "" ) {
 }
 
 /*
-* fin
-*/
-
-/*
 * Registramos script y estilos para la web
 */
 
 if ( ! function_exists( 'verano_scripts' ) ) {
+	add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
+
 	function theme_enqueue_styles() {
-
-
-
 		// Registrar estilos
 		wp_register_style( 'roboto', '//fonts.googleapis.com/css?family=Roboto:700,400,400italic', false, false );
 		wp_register_style( 'lato', '//fonts.googleapis.com/css?family=Lato: 300, 400,700', false, false );
 		wp_register_style('font-awesome', 'http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css', false, false );
 		wp_register_style('elusive-icons', get_stylesheet_directory_uri() . '/inc/fonts/css/elusive-icons.css', false, false );
-		wp_register_style('verano-css', get_stylesheet_directory_uri() . '/_style.min.css', false, false );
+		wp_register_style('verano-css', get_stylesheet_directory_uri() . '/style.min.css', false, false );
 
 		// Cargar estilo
-		//wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' ); // css de twentysixteen
 		wp_enqueue_style( 'roboto' );
 		wp_enqueue_style( 'lato' );
 		wp_enqueue_style('font-awesome');
@@ -156,7 +118,7 @@ if ( ! function_exists( 'verano_scripts' ) ) {
 
 		// Registrar script
 		wp_register_script( 'verano-jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', array( 'jquery' ), false, true );
-		wp_register_script( 'jquery-slides', get_stylesheet_directory_uri() . '/js/jquery.slides.min.js', array( 'jquery' ), false, true );
+		wp_register_script( 'jquery-slides', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', array( 'jquery' ), false, true );
 		wp_register_script( 'verano-custom-js', get_stylesheet_directory_uri() . '/js/scripts.js', array( 'jquery' ), false, true );
 		wp_register_script( 'scroll-reveal', get_stylesheet_directory_uri() . '/js/scroll-reveal.js', array( 'jquery' ), false, false );
 		// Cargar script
@@ -165,10 +127,8 @@ if ( ! function_exists( 'verano_scripts' ) ) {
 		wp_enqueue_script( 'verano-custom-js' );
 		wp_enqueue_script( 'scroll-reveal' );
 
-
 	}
 
-	add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 }
 
 /* Fin */
@@ -183,13 +143,7 @@ require ( get_stylesheet_directory() . '/inc/widgets.php' );
 
 require ( get_stylesheet_directory() . '/inc/admin/admin-init.php');
 
-/**
- * Registers a widget area.
- *
- * @link https://developer.wordpress.org/reference/functions/register_sidebar/
- *
- * @since Twenty Sixteen 1.0
- */
+require ( get_stylesheet_directory() . '/inc/widget-related-post.php');
 
 /**
  * ----------------------------------------------------------------------------------------
@@ -197,6 +151,8 @@ require ( get_stylesheet_directory() . '/inc/admin/admin-init.php');
  * ----------------------------------------------------------------------------------------
  */
 if ( ! function_exists( 'verano_widget_init' ) ) {
+
+	add_action( 'widgets_init', 'verano_widget_init' );
 	function verano_widget_init() {
 		if ( function_exists( 'register_sidebar' ) ) {
 			register_sidebar( array(
@@ -256,13 +212,11 @@ if ( ! function_exists( 'verano_widget_init' ) ) {
 
 		}
 	}
-
-	add_action( 'widgets_init', 'verano_widget_init' );
 }
 /*
 * Quitar widget
 */
-
+add_action( 'widgets_init', 'remove_widgets', 11 );
 function remove_widgets() {
 
 	// Unregister some of the TwentyTen sidebars
@@ -270,54 +224,26 @@ function remove_widgets() {
 	unregister_sidebar( 'sidebar-3' );
 
 }
-
-add_action( 'widgets_init', 'remove_widgets', 11 );
-
-
-/**
- * Registers a widget area.
- *
- * @link https://developer.wordpress.org/reference/functions/
- *
- * @since Twenty Sixteen 1.0
- */
-
-/**
- * ----------------------------------------------------------------------------------------
- * 8.0 - .Alternativas a customizer
- * ----------------------------------------------------------------------------------------
- */
-
 /*
 *  Eliminamos partes de customizer twentysixteen
 */
-
+add_action( 'customize_register', 'mytheme_customize_register' );
 function mytheme_customize_register( $wp_customize ) {
-	//All our sections, settings, and controls will be added here
-
-	// title_tagline - Site Title & Tagline
-	// colors - Colors
-	// header_image - Header Image
-	//background_image - Background Image
-	// nav - Navigation
-	// static_front_page - Static Front Page
-
 	$wp_customize->remove_section( 'colors' );
 	$wp_customize->remove_section( 'background_image' );
 	$wp_customize->remove_section( 'header_image' );
 }
 
-add_action( 'customize_register', 'mytheme_customize_register' );
-
 /*
 *  Registro de widgets
 */
+add_action( 'widgets_init', 'load_widgets' );
 function load_widgets() {
 
 	register_widget( 'aboutUsWidget' );
 
 	register_widget( 'testimoniosWidget' );
-	
+
 	register_widget( 'ultimasentradasWidget' );
 
 	register_widget( 'destacadosWidget' );
@@ -327,149 +253,143 @@ function load_widgets() {
 	register_widget( 'verano_widget_related_posts' );
 }
 
-add_action( 'widgets_init', 'load_widgets' );
-
 /*
-* fin
-*/
-/*-----------------------------------------------------------------------------------*/
-/* PAGE LAYOUTS
-/*-----------------------------------------------------------------------------------*/
+ *  Meta box layout
+ */
 
-if ( ! function_exists( 'verano_opten_layout' ) ) {
-	function verano_opten_layout() {
-		global $post;
-		if ( is_single() || is_page() || is_archive() ) {
-			$verano_pagelayout_style_meta = get_post_meta( $post->ID, 'verano_pagelayout_style', true );
-			switch ( $verano_pagelayout_style_meta ) {
-				case 'pagelayout-fullwidth':
-					echo 'l12';
+class Rational_Meta_Box {
+	private $screens = array(
+		'post',
+		'page',
+	);
+	private $fields = array(
+		array(
+			'id' => 'post-layout',
+			'label' => 'Selecciona la plantilla',
+			'type' => 'select',
+			'options' => array(
+				'twelve-col' => 'Sin sidebar',
+				'content-area' => 'Con sidebar',
+			),
+		),
+	);
+
+	/**
+	 * Class construct method. Adds actions to their respective WordPress hooks.
+	 */
+	public function __construct() {
+		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
+		add_action( 'save_post', array( $this, 'save_post' ) );
+	}
+
+	/**
+	 * Hooks into WordPress' add_meta_boxes function.
+	 * Goes through screens (post types) and adds the meta box.
+	 */
+	public function add_meta_boxes() {
+		foreach ( $this->screens as $screen ) {
+			add_meta_box(
+				'opciones-de-layout',
+				__( 'Opciones de layout', 'verano' ),
+				array( $this, 'add_meta_box_callback' ),
+				$screen,
+				'advanced',
+				'default'
+			);
+		}
+	}
+
+	/**
+	 * Generates the HTML for the meta box
+	 *
+	 * @param object $post WordPress post object
+	 */
+	public function add_meta_box_callback( $post ) {
+		wp_nonce_field( 'opciones_de_layout_data', 'opciones_de_layout_nonce' );
+		echo 'Cambia el formato de la página';
+		$this->generate_fields( $post );
+	}
+
+	/**
+	 * Generates the field's HTML for the meta box.
+	 */
+	public function generate_fields( $post ) {
+		$output = '';
+		foreach ( $this->fields as $field ) {
+			$label = '<label for="' . $field['id'] . '">' . $field['label'] . '</label>';
+			$db_value = get_post_meta( $post->ID, 'opciones_de_layout_' . $field['id'], true );
+			switch ( $field['type'] ) {
+				case 'select':
+					$input = sprintf(
+						'<select id="%s" name="%s">',
+						$field['id'],
+						$field['id']
+					);
+					foreach ( $field['options'] as $key => $value ) {
+						$field_value = !is_numeric( $key ) ? $key : $value;
+						$input .= sprintf(
+							'<option %s value="%s">%s</option>',
+							$db_value === $field_value ? 'selected' : '',
+							$field_value,
+							$value
+						);
+					}
+					$input .= '</select>';
 					break;
 				default:
-					break;
+					$input = sprintf(
+						'<input %s id="%s" name="%s" type="%s" value="%s">',
+						$field['type'] !== 'color' ? 'class="regular-text"' : '',
+						$field['id'],
+						$field['id'],
+						$field['type'],
+						$db_value
+					);
 			}
-		} else {
-			return;
+			$output .= $this->row_format( $label, $input );
 		}
+		echo '<table class="form-table"><tbody>' . $output . '</tbody></table>';
 	}
-}
 
-
-/*-----------------------------------------------------------------------------------*/
-/* POST META BOX SETTINGS
- /*-----------------------------------------------------------------------------------*/
-
-if ( ! function_exists( 'verano_option_meta_verano_setup' ) ) {
-	function verano_option_meta_verano_setup() {
-		add_action( 'add_meta_boxes', 'verano_add_option_boxes' );
-		add_action( 'save_post', 'verano_save_option_meta', 10, 2 );
-	}
-}
-add_action( 'load-post.php', 'verano_option_meta_verano_setup' );
-add_action( 'load-post-new.php', 'verano_option_meta_verano_setup' );
-
-if ( ! function_exists( 'verano_add_option_boxes' ) ) {
-	function verano_add_option_boxes() {
-		add_meta_box(
-			'verano-post-options',
-			esc_html__( 'Opciones para posts', 'verano' ),
-			'verano_options_meta_box',
-			'post',
-			'side',
-			'core'
-		);
-		add_meta_box(
-			'verano-post-options',
-			esc_html__( 'Opciones para páginas', 'verano' ),
-			'verano_options_meta_box',
-			'page',
-			'side',
-			'core'
-		);
-		add_meta_box(
-			'verano-testimonios-autor',
-			esc_html__( 'Opciones para testimonios', 'verano' ),
-			'verano_options_meta_box',
-			'testimonios',
-			'side',
-			'core'
+	/**
+	 * Generates the HTML for table rows.
+	 */
+	public function row_format( $label, $input ) {
+		return sprintf(
+			'<tr><th scope="row">%s</th><td>%s</td></tr>',
+			$label,
+			$input
 		);
 	}
-}
+	/**
+	 * Hooks into WordPress' save_post function
+	 */
+	public function save_post( $post_id ) {
+		if ( ! isset( $_POST['opciones_de_layout_nonce'] ) )
+			return $post_id;
 
-if ( ! function_exists( 'verano_options_meta_box' ) ) {
-	function verano_options_meta_box( $object, $box ) {
-		global $post;
-		wp_nonce_field( basename( __FILE__ ), 'verano_subtitle' );
-		$verano_subtitle_meta         = get_post_meta( $post->ID, 'verano_subtitle', true );
-		$verano_pagelayout_style_meta = get_post_meta( $post->ID, 'verano_pagelayout_style', true );
-		$verano_autor_testimonio_meta = get_post_meta( $post->ID, 'verano_autor_testimonio', true );
+		$nonce = $_POST['opciones_de_layout_nonce'];
+		if ( !wp_verify_nonce( $nonce, 'opciones_de_layout_data' ) )
+			return $post_id;
 
-		?>
-		<p>
-			<label>
-				<strong>Subtítulo</strong>
-				<textarea class="widefat" rows="3" name="verano_subtitle"
-				          id="verano_subtitle"><?php echo esc_html( $verano_subtitle_meta ); ?></textarea>
-			</label>
-		<p class="howto">Añade un subtítutlo en tus páginas.</p>
-		</p>
-		<hr>
-		<p>
-			<strong>Estilo de página</strong><br><br>
-			<input type="radio" id="pagelayout-standard" name="verano_pagelayout_style"
-			       value="pagelayout-standard" <?php if ( ! in_array( $verano_pagelayout_style_meta,
-				array( 'pagelayout-fullwidth' ) )
-			) {
-				echo 'checked';
-			} ?>>
-			<label for="pagelayout-standard">Con Bara lateral</label><br>
-			<input type="radio" id="pagelayout-fullwidth" name="verano_pagelayout_style"
-			       value="pagelayout-fullwidth" <?php checked( $verano_pagelayout_style_meta,
-				'pagelayout-fullwidth' ); ?>>
-			<label for="pagelayout-fullwidth">Sin Barra lateral</label><br>
-		<p class="howto">Configura es estilo de las páginas y post.</p>
-		</p>
-		<hr>
-		<p>
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+			return $post_id;
 
-			<label>
-				<strong>Autor</strong>
-				<textarea rows="3" name="verano_autor_testimonio"
-				          id="verano_autor_testimonio"><?php echo esc_html( $verano_autor_testimonio_meta ); ?></textarea>
-			</label>
-		</p>
-		<hr>
-
-		<?php
-	}
-}
-
-if ( ! function_exists( 'verano_save_option_meta' ) ) {
-	function verano_save_option_meta( $post_id, $post ) {
-		$is_autosave = wp_is_post_autosave( $post_id );
-		$is_revision = wp_is_post_revision( $post_id );
-
-		$verano_subtitle_meta         = ( isset( $_POST['verano_subtitle'] ) && wp_verify_nonce( $_POST['verano_subtitle'],
-				basename( __FILE__ ) ) ) ? 'true' : 'false';
-		$verano_pagelayout_style      = ( isset( $_POST['verano_pagelayout_style'] ) && wp_verify_nonce( $_POST['verano_pagelayout_style'],
-				basename( __FILE__ ) ) ) ? 'true' : 'false';
-		$verano_autor_testimonio_meta = ( isset( $_POST['verano_autor_testimonio'] ) && wp_verify_nonce( $_POST['verano_autor_testimonio'],
-				basename( __FILE__ ) ) ) ? 'true' : 'false';
-
-		if ( $is_autosave || $is_revision && ! $verano_subtitle_meta && ! $verano_pagelayout_style && ! $verano_autor_testimonio_meta ) {
-			return;
-		}
-		if ( isset( $_POST['verano_subtitle'] ) ) {
-			update_post_meta( $post_id, 'verano_subtitle', sanitize_text_field( $_POST['verano_subtitle'] ) );
-		}
-		if ( isset( $_POST['verano_pagelayout_style'] ) ) {
-			update_post_meta( $post_id, 'verano_pagelayout_style',
-				sanitize_text_field( $_POST['verano_pagelayout_style'] ) );
-		}
-		if ( isset( $_POST['verano_autor_testimonio'] ) ) {
-			update_post_meta( $post_id, 'verano_autor_testimonio',
-				sanitize_text_field( $_POST['verano_autor_testimonio'] ) );
+		foreach ( $this->fields as $field ) {
+			if ( isset( $_POST[ $field['id'] ] ) ) {
+				switch ( $field['type'] ) {
+					case 'email':
+						$_POST[ $field['id'] ] = sanitize_email( $_POST[ $field['id'] ] );
+						break;
+					case 'text':
+						$_POST[ $field['id'] ] = sanitize_text_field( $_POST[ $field['id'] ] );
+						break;
+				}
+				update_post_meta( $post_id, 'opciones_de_layout_' . $field['id'], $_POST[ $field['id'] ] );
+			} else if ( $field['type'] === 'checkbox' ) {
+				update_post_meta( $post_id, 'opciones_de_layout_' . $field['id'], '0' );
+			}
 		}
 	}
 }
+new Rational_Meta_Box;

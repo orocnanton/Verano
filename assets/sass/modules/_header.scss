@@ -1,22 +1,44 @@
 //--------------------------------------------------------------
 // Header
 //--------------------------------------------------------------
-.site-header{
-  margin-top: rem(20);
-}
-.site-branding {
-  float: left;
-  text-align: left;
-  img{
-    max-width: 80%;
-  }
-  .site-title {
-    font-size: rem(48);
-  }
+.site-header {
+  &.active {
+    //@include transition(all 1.0s ease-in-out);
 
-  .site-description {
-    font-size: rem(24);
-    margin: 0 0 rem(24) 0;
+    background: $color-whitesmoke !important;
+    .site-branding {
+      img {
+        max-width: 60%;
+      }
+    }
+    @include media($tablet-landscape) {
+      &.active {
+        position: fixed;
+        width: 100%;
+        z-index: 9999;
+        @include pad(rem(10) 0);
+        background: $color-whitesmoke;
+        border-bottom: 1px solid $color-blue;
+      }
+    }
+  }
+  .site-branding {
+    float: left;
+    text-align: left;
+    img {
+      max-width: 60%;
+      @include media($tablet-landscape) {
+        max-width: 100%;
+      }
+    }
+    .site-title {
+      font-size: rem(48);
+    }
+
+    .site-description {
+      font-size: rem(24);
+      margin: 0 0 rem(24) 0;
+    }
   }
 }
 

@@ -1,0 +1,9 @@
+.site-header img, .btn, .btn-block, .front-page.precios, .site-header-menu.toggled-on .main-navigation  {
+  @include transition(all .3s ease-in-out);
+}
+.btn{
+  @include transition(all .3s ease-in-out);
+}
+
+
+//.site-header, .site-header img, .btn, .btn-block, .front-page.precios, .site-header-menu.toggled-on .main-navigation

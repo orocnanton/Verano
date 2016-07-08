@@ -6,21 +6,26 @@
 .social-icons {
 	@include clearfix;
 	@include list-reset;
-
+	display: block;
 	// Each icon <li>
 	.social-icon {
-
+		display: inline-block;
+		background: $color-alto;
+		padding: $gutter / 2;
+		margin: 0 6px 10px;
+		text-align: center;
 		// Loop through all social icons
 		@each $social-color, $color in $social-colors {
 
 			// Set styles on those social icons!
 			.icon-#{$social-color} {
-				@include size(rem(30) rem(30));
+				@include size(rem(40) rem(40));
+				font-size: $base-font-size * 1.6;
 
-				fill: $color;
+				//color: $color;
 
 				&:hover {
-					fill: lighten($color, 20%);
+					color: lighten($color, 20%);
 				}
 			}
 		}

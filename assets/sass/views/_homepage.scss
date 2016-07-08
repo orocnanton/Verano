@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 
 .home .site-content .wrap {
+  @include outer-container;
   width: 100%;
   max-width: 100%;
   padding:0;
@@ -17,9 +18,24 @@
         border-bottom: none;
         margin-bottom: 0;
       }
+      &.image {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+        background: transparent;
+        height: auto;
+        .image-content {
+          text-align: center;
+          background-size: cover !important;
+          background-repeat: no-repeat !important;
+          padding-top: 10%;
+          padding-bottom: 10%;
+        }
+      }
     }
   }
 }
+
 
 .front-page.presentacion {
   h2 {
@@ -51,7 +67,6 @@
 
 .front-page.precios {
   @include outer-container;
-  @include animation(fadeIn 1.0s ease-in);
   text-align: center;
   .two-col {
     background: $color-gallery;
@@ -72,7 +87,7 @@
   }
 }
 // Page front option 2
-.page-template-page_front .site-content{
+.page-template-page_front .site-content, .page-template-page_front_video .site-content{
   .wrap{
     width: 100%;
     max-width: 100%;
@@ -96,24 +111,24 @@
           margin-bottom: 0;
         }
         &.image{
-          background: url(http://192.168.0.15:3000/wp-verano/wp-content/uploads/2016/07/playa-con-silla.jpg) no-repeat center center fixed;
-          height: 515px;
+          background: url('http://192.168.0.15:8888/wp-verano/wp-content/uploads/2016/07/playa-con-silla.jpg') no-repeat center center fixed;
           overflow: hidden;
-          text-align: center;
-          padding: $gutter;
-          color: $color-whitesmoke;
           background-size: cover;
-          .btn{
-            border: 1px solid $color-whitesmoke;
-            color: $color-whitesmoke !important;
-          }
-          h1 {
-            font-size: 60px;
-            font-size: 6rem;
-          }
-          p{
-            font-size: 24px;
-            font-size: 2.4rem;
+          .image-content{
+            color: $color-whitesmoke;
+            text-align: center;
+            padding:10% 0;
+            .btn{
+              border: 1px solid $color-whitesmoke;
+              color: $color-whitesmoke !important;
+            }
+            h1 {
+
+            }
+            p{
+              font-size: 24px;
+              font-size: 2.4rem;
+            }
           }
         }
         &.callto{
@@ -173,5 +188,32 @@
   }
 }
 
-
-
+.page-template-page_front_video{
+  .site-content {
+    .content-area{
+      margin-top: 0;
+    }
+    margin-top: 0;
+    article {
+      &.image {
+        background: transparent;
+        height: auto;
+        .image-content{
+          padding: 10%;
+        }
+        #videobcg {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          min-width: 100%;
+          min-height: 100%;
+          width: auto;
+          height: auto;
+          z-index: -1;
+          //background: url(assets/img/img/1pixel.jpg) no-repeat;
+          background-size: cover;
+        }
+      }
+    }
+  }
+}

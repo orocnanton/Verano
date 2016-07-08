@@ -40,13 +40,26 @@ $color-pinterest: #cb2027;
 $color-rss: #ff9900;
 $color-twitter: #00aced;
 $color-youtube: #bb0000;
+$color-vine: $color-silver;
+$color-github: $color-silver;
+$color-stumbleupon: $color-silver;
+$color-reddit: $color-silver;
+$color-vimeo-square: $color-silver;
+$color-skype: $color-silver;
+$color-flickr: $color-silver;
+$color-dribbble: $color-silver;
+$color-github-alt: $color-silver;
+$color-pinterest: $color-silver;
+$color-tumblr: $color-silver;
+$color-vk: $color-silver;
+
 
 // $social-colors() map
 $social-colors: (
 	facebook: $color-facebook,
 	facebook-square: $color-facebook,
-	googleplus: $color-googleplus,
-	googleplus-square: $color-googleplus,
+	google-plus: $color-googleplus,
+	google-plus-square: $color-googleplus,
 	instagram: $color-instagram,
 	linkedin: $color-linkedin,
 	linkedin-square: $color-linkedin,
@@ -58,6 +71,17 @@ $social-colors: (
 	twitter-square: $color-twitter,
 	youtube: $color-youtube,
 	youtube-square: $color-youtube,
+	vine: $color-silver,
+	github: $color-silver,
+	stumbleupon: $color-silver,
+	reddit: $color-silver,
+	vimeo-square: $color-silver,
+	skype: $color-silver,
+	flickr: $color-silver,
+	dribbble: $color-silver,
+	github-alt: $color-silver,
+	tumblr: $color-silver,
+	vk: $color-silver,
 );
 
 // ELEMENTS & SKINNING

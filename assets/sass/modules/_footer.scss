@@ -7,21 +7,21 @@
   a {
     color: $color-whitesmoke;
   }
-  .social-icon {
+  .social-icons {
     text-align: center;
-    font-size: 28px;
-    padding-bottom: 20px;
-    a {
-      color: $color-whitesmoke;
-      &:hover {
-        text-decoration: none;
+    .social-icon{
+      background: transparent;
+      a {
+        color: $color-whitesmoke;
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
   }
   .site-info {
     background: $color-cod-gray;
     color: $color-whitesmoke;
-    font-size: 1em;
     padding: $gutter 0;
     .site-title {
       font-size: 1em;

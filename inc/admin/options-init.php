@@ -70,29 +70,6 @@ $args = array(
 	'network_sites'         => true,
 );
 
-// SOCIAL ICONS -> Setup custom links in the footer for quick links in your panel footer icons.
-$args['share_icons'][] = array(
-	'url'   => 'https://github.com/ReduxFramework/ReduxFramework',
-	'title' => 'Visit us on GitHub',
-	'icon'  => 'el el-github'
-	//'img'   => '', // You can use icon OR img. IMG needs to be a full URL.
-);
-$args['share_icons'][] = array(
-	'url'   => 'https://www.facebook.com/pages/Redux-Framework/243141545850368',
-	'title' => 'Like us on Facebook',
-	'icon'  => 'el el-facebook'
-);
-$args['share_icons'][] = array(
-	'url'   => 'http://twitter.com/reduxframework',
-	'title' => 'Follow us on Twitter',
-	'icon'  => 'el el-twitter'
-);
-$args['share_icons'][] = array(
-	'url'   => 'http://www.linkedin.com/company/redux-framework',
-	'title' => 'Find us on LinkedIn',
-	'icon'  => 'el el-linkedin'
-);
-
 Redux::setArgs( $opt_name, $args );
 
 /*
@@ -126,7 +103,6 @@ Redux::setHelpSidebar( $opt_name, $content );
  * <--- END HELP TABS
  */
 
-    
     	$social_options = array(
                     'twitter'       => 'Twitter',
                     'facebook'      => 'Facebook',
@@ -148,9 +124,6 @@ Redux::setHelpSidebar( $opt_name, $content );
                     'vine'          => 'Vine',
                     'rss'           => 'RSS',
                 );
-        
-    
-
 
 /*
  *
@@ -159,18 +132,30 @@ Redux::setHelpSidebar( $opt_name, $content );
  */
 
 Redux::setSection( $opt_name, array(
-	'title'  => __( 'Basic Field', 'redux_builder_orocnanotn' ),
-	'id'     => 'basic',
-	'desc'   => __( 'Basic field with no subsections.', 'redux_builder_orocnanotn' ),
+	'title'  => __( 'General', 'redux_builder_orocnanotn' ),
+	'id'     => 'general',
+	'desc'   => __( 'Ajustes generales.', 'redux_builder_orocnanotn' ),
 	'icon'   => 'el el-home',
 	'fields' => array(
+
 		array(
-			'id'       => 'opt-text',
-			'type'     => 'text',
-			'title'    => __( 'Example Text', 'redux_builder_orocnanotn' ),
-			'desc'     => __( 'Example description.', 'redux_builder_orocnanotn' ),
-			'subtitle' => __( 'Example subtitle.', 'redux_builder_orocnanotn' ),
-		)
+			'id'       => 'opt-layout',
+			'type'     => 'image_select',
+			'title'    => __('Main Layout', 'redux_builder_orocnanotn'),
+			'subtitle' => __('Select main content and sidebar alignment. Choose between 1, 2 or 3 column layout.', 'redux_builder_orocnanotn'),
+			'options'  => array(
+				'twelve-col'      => array(
+					'alt'   => '1 Column',
+					'img'   => ReduxFramework::$_url.'assets/img/1col.png'
+				),
+
+				'content-area'      => array(
+					'alt'   => '2 Column Right',
+					'img'  => ReduxFramework::$_url.'assets/img/2cr.png'
+				),
+			),
+//			'default' => '2'
+		),
 	)
 ) );
 
@@ -218,12 +203,30 @@ Redux::setSection( $opt_name, array(
 /*
  * <--- END SECTIONS
  */
+// Header
+Redux::setSection( $opt_name, array(
+	'title'  => __( 'Header', 'redux_builder_orocnanotn' ),
+	'id'     => 'header',
+	'desc'   => __( 'Script header.', 'redux_builder_orocnanotn' ),
+	'icon'   => 'el el-brush',
+	'fields' => array(
+
+		array(
+			'id'=>'script-header',
+			'type' => 'textarea',
+			'title' => __('Script header', 'redux_builder_orocnanotn'),
+			'subtitle' => __('Añade los script que deban ir en el header del sitio', 'redux_builder_orocnanotn'),
+			'default' => '<script>Script del header.</script>',
+		),
+		// other section
+	)
+));
 // Home page
 Redux::setSection( $opt_name, array(
 	'title'  => __( 'Página de inicio', 'redux_builder_orocnanotn' ),
 	'id'     => 'home',
-	'desc'   => __( 'Slides en la página de inicio.', 'redux_builder_orocnanotn' ),
-	'icon'   => 'el el-home',
+	'desc'   => __( 'Secciones página de inicio.', 'redux_builder_orocnanotn' ),
+	'icon'   => 'el el-brush',
 	'fields' => array(
 		// Slides
 		array(
@@ -362,7 +365,6 @@ Redux::setSection( $opt_name, array(
 			'type'     => 'select',
 			'title'    => __('Selecciona una categoría', 'redux_builder_orocnanotn'),
 			'data'     => 'category',
-			// Must provide key => value pairs for select options
 		),
 
 		array(
@@ -373,7 +375,36 @@ Redux::setSection( $opt_name, array(
 		    'mode'     => 'text',
 		    'options'  => $social_options,
 		    ),
-		    // For checkbox mode
+
+		    // Footer links
+	)
+));
+
+Redux::setSection( $opt_name, array(
+	'title'  => __( 'Footer', 'redux_builder_orocnanotn' ),
+	'id'     => 'pie',
+	'desc'   => __( 'Sección del pie de página.', 'redux_builder_orocnanotn' ),
+	'icon'   => 'el el-brush',
+	'fields' => array(
+		// Footer links
+		array(
+			'id'       => 'links-footer',
+			'type'     => 'select',
+			'multi'    => true,
+			'title'    => __('Links para el footer de la web', 'redux_builder_orocnanotn'),
+			'data'	   => 'pages',
+		),
+		// Scrip footer section
+		array(
+			'id'=>'script-footer',
+			'type' => 'textarea',
+			'title' => __('Script footer', 'redux_builder_orocnanotn'),
+			'subtitle' => __('Añade los script que deban ir en el header del sitio', 'redux_builder_orocnanotn'),
+			'default' => '<script>Script del header.</script>',
+		),
+		// other section
+	)
+));
 
 
 
@@ -391,8 +422,6 @@ Redux::setSection( $opt_name, array(
 		//     ),
 		// ),
 
-	)
-) );
 
 // Redux::setSection( $opt_name, array(
 //     'title'      => __( 'Presentación', 'redux_builder_orocnanotn' ),
